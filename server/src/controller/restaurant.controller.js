@@ -466,7 +466,7 @@ const getMenuContext = async (currentUser, itemId, next) => {
 
   const menuItem = existingMenu.menuItems.id(itemId);
 
-  console.log("Menu Item Found:", menuItem);
+  // console.log("Menu Item Found:", menuItem);
 
   if (!menuItem) {
     const error = new Error("Menu Item Not Found");
@@ -486,7 +486,8 @@ export const RestaurantUpdateMenuItem = async (req, res, next) => {
     if (!context) return;
 
     const { existingMenu, menuItem } = context;
-    const { itemName, description, price, category, foodType, status } = req.body;
+    const { itemName, description, price, category, foodType, status } =
+      req.body;
     const itemImageFromFE = req.file;
 
     if (itemName !== undefined) menuItem.itemName = itemName;
@@ -515,7 +516,7 @@ export const RestaurantUpdateMenuItem = async (req, res, next) => {
 
     existingMenu.markModified("menuItems");
     await existingMenu.save();
-    console.log("Menu Item Updated:", menuItem);
+    // console.log("Menu Item Updated:", menuItem);
 
     return res.status(200).json({
       message: "Menu item updated successfully",
