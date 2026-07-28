@@ -47,7 +47,7 @@ export const GetRestaurantDetails = async (req, res, next) => {
       populate: {
         path: "managerId",
       },
-    });
+    })
 
     if (!restaurantDetails) {
       const error = new Error("Restaurant not found");
