@@ -42,9 +42,12 @@ export const GetRestaurantDetails = async (req, res, next) => {
   try {
     const { restaurantId } = req.params;
 
-    const restaurantDetails = await Menu.findOne({ restaurantId }).populate(
-      "restaurantId",
-    );
+    const restaurantDetails = await Menu.findOne({ restaurantId }).populate({
+      path: "restaurantId",
+      populate: {
+        path: "managerId",
+      },
+    });
 
     if (!restaurantDetails) {
       const error = new Error("Restaurant not found");
